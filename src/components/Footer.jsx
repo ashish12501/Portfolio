@@ -39,6 +39,8 @@ const Footer = () => {
           <Col>
             <ColTitle>Other</ColTitle>
             {/* <SiteRouterLink to='/resources'>Resources</SiteRouterLink> */}
+
+
             <SiteRouterLink >Resources</SiteRouterLink>
             <SiteRouterLink to='/feedback'>Feedback</SiteRouterLink>
           </Col>
