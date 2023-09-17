@@ -2,16 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Error from './pages/Error';
+import Home from './pages/Home';
+import { AppContextProvider } from './context/AppContext';
+import Projects from './pages/Projects';
+import Blogs from './pages/Blogs';
+import Contact from './pages/Contact';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Resources from './pages/Resources';
+import Feedback from './pages/Feedback';
+
+const queryClient = new QueryClient();
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'projects', element: <Projects /> },
+      { path: 'blogs', element: <Blogs /> },
+      { path: 'contact', element: <Contact /> },
+      { path: 'resources', element: <Resources /> },
+      { path: 'feedback', element: <Feedback /> },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient} contextSharing={true}>
+      <AppContextProvider>
+        <RouterProvider router={router} />
+      </AppContextProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
