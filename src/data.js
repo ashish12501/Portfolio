@@ -10,12 +10,12 @@ const projects = [
   },
   {
     id: 2,
-    title: ' Vector Class',
-    img: '/imgs/projects/Vector.png',
-    desc: 'An educational website wehere students can read articles and join communities.',
-    technologies: ['HTML', 'CSS', 'Javascript'],
-    github: 'https://github.com/Vector-Classroom/Vector-Classroom',
-    live: 'https://vector-classroom.github.io/Vector-Classroom/',
+    title: 'ExpenseExpert',
+    img: '/imgs/projects/ExpenseXpert.png',
+    desc: 'A web app where you can add, view, edit, delete and track your expenses.',
+    technologies: ['React JS', 'Firebase'],
+    github: 'https://github.com/ashish12501/ExpensXpert',
+    live: 'https://expensxpert.web.app/',
   },
   {
     id: 3,
@@ -28,6 +28,16 @@ const projects = [
   },
   {
     id: 4,
+    title: ' Vector Class',
+    img: '/imgs/projects/Vector.png',
+    desc: 'An educational website wehere students can read articles and join communities.',
+    technologies: ['HTML', 'CSS', 'Javascript'],
+    github: 'https://github.com/Vector-Classroom/Vector-Classroom',
+    live: 'https://vector-classroom.github.io/Vector-Classroom/',
+  },
+
+  {
+    id: 5,
     title: 'To-Do-App',
     img: '/imgs/projects/To-Do-App.png',
     desc: 'A To-Do-App where users can add new task, mark them complete, and delete the tasks.',
@@ -36,7 +46,7 @@ const projects = [
     live: 'https://ashish12501.github.io/React-ToDo-App/',
   },
   {
-    id: 5,
+    id: 6,
     title: 'Shopzy',
     img: '/imgs/projects/Shopzy.png',
     desc: 'A shoppoiong app where users can browse multiple categories and view products.',
@@ -45,7 +55,7 @@ const projects = [
     live: 'https://ashish12501.github.io/Shopzy/',
   },
   {
-    id: 6,
+    id: 7,
     title: 'Socio',
     img: '/imgs/projects/Socio.png',
     desc: 'A Social media where usere is able to signin, create posts and view posts of other users.',
