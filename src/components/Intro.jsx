@@ -18,7 +18,7 @@ const Intro = () => {
           <MyImg src={me} alt='Ashish Kumar Yadav' loading='lazy' />
           <Description>
             <Heading>Ashish Kumar Yadav</Heading>
-            <Title>Frontend Developer</Title>
+            <Title>Fullstack Developer</Title>
             <Bio>
               Passionate about Technoloy and a team player.
             </Bio>
