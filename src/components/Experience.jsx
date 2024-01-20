@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const data = [
   {
     id: 1,
-    company: 'Cryptonaukri',
+    company: 'Revspire',
     role: 'Software Developer Intern',
     fromDate: new Date('2022-04-04'),
     toDate: new Date('2022-07-04'),
