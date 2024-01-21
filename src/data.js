@@ -100,6 +100,18 @@ const skills = [
     title: "Sass",
   },
   {
+    icon: "tailwind",
+    title: "Tailwind",
+  },
+  {
+    icon: "express",
+    title: "Express",
+  },
+  {
+    icon: "mysql",
+    title: "Mysql",
+  },
+  {
     icon: "git",
     title: "Git",
   },
