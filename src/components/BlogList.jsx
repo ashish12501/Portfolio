@@ -18,7 +18,7 @@ const endpoint = 'https://gql.hashnode.com';
 const ARTICLE_QUERY = `
   query Publication {
     publication(host: "ashishcodes.hashnode.dev") {
-      posts(first: 20) {
+      posts(first: 5) {
         edges {
           node {
             id
@@ -70,7 +70,7 @@ const BlogList = () => {
         query: ARTICLE_QUERY,
       },
     }).then((response) => {
-      // console.log(response.data.data.publication);
+      console.log(response.data.data.publication);
       return response.data.data.publication;
     });
   });
