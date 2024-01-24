@@ -12,23 +12,29 @@ import Spinner from './Spinner';
 import { BsChevronDown } from 'react-icons/bs';
 import { useLocation } from 'react-router-dom';
 
-const endpoint = 'https://api.hashnode.com/';
+// const endpoint = 'https://api.hashnode.com/';
+const endpoint = 'https://gql.hashnode.com';
+
 const ARTICLE_QUERY = `
-  {
-    user(username: "ashish63") {
-      publication {
-        posts(page: 0) {
-          title
-          brief
-          slug
-          dateAdded
-          _id
-          coverImage
+  query Publication {
+    publication(host: "ashishcodes.hashnode.dev") {
+      posts(first: 20) {
+        edges {
+          node {
+            id
+            title
+            brief
+            slug
+            url
+            publishedAt
+            coverImage {
+              url
+            } 
+          }
         }
       }
     }
   }
-
 `;
 
 const container = {
@@ -63,7 +69,10 @@ const BlogList = () => {
       data: {
         query: ARTICLE_QUERY,
       },
-    }).then((response) => response.data.data);
+    }).then((response) => {
+      // console.log(response.data.data.publication);
+      return response.data.data.publication;
+    });
   });
   const { pathname } = useLocation();
 
@@ -89,20 +98,20 @@ const BlogList = () => {
         <motion.section variants={container} initial='hidden' animate='visible'>
           <BlogsWrapper>
             {pathname === '/'
-              ? blogsData.user.publication.posts.slice(0, 3).map((blog) => (
-                <motion.div key={blog._id} variants={item}>
-                  <BlogCard blog={blog} key={blog._id} />
-                </motion.div>
-              ))
-              : blogsData?.user?.publication?.posts.map((blog) => (
-                <motion.div key={blog._id} variants={item}>
-                  <BlogCard blog={blog} key={blog._id} />
-                </motion.div>
-              ))}
+              ? blogsData?.posts.edges.slice(0, 3).map(({ node }) => (
+                  <motion.div key={node.id} variants={item}>
+                    <BlogCard blog={node} key={node.id} />
+                  </motion.div>
+                ))
+              : blogsData?.posts.edges.map(({ node }) => (
+                  <motion.div key={node.id} variants={item}>
+                    <BlogCard blog={node} key={node.id} />
+                  </motion.div>
+                ))}
           </BlogsWrapper>
         </motion.section>
 
-        {blogsData?.user.publication.posts.length > 3 && pathname === '/' && (
+        {blogsData?.posts?.edges.length > 3 && pathname === '/' && (
           <TransparentButton to='/blogs'>
             See more <BsChevronDown />
           </TransparentButton>
