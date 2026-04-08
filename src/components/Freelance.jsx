@@ -24,10 +24,10 @@ const Freelance = () => {
     <Container>
       <Wrapper>
         <TextWrapper>
-          <Heading>Looking for a Frontend Developer?</Heading>
+          <Heading>Looking for a Full-Stack Developer?</Heading>
           <Text>
-            I'm a Front-End Developer eager to tackle complex projects. Let's
-            collaborate on something awesome! 🚀
+            I'm a Full-Stack Developer eager to tackle complex projects end to
+            end. Let's collaborate on something awesome! 🚀
           </Text>
 
           <IconsWrapper>

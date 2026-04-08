@@ -1,59 +1,51 @@
-import styled from 'styled-components';
-import { Container, SectionTitle } from '../styles/globalStyles';
-import { motion } from 'framer-motion';
+import styled from "styled-components";
+import { Container, SectionTitle } from "../styles/globalStyles";
+import { motion } from "framer-motion";
 
 const data = [
   {
     id: 1,
-    company: 'Revspire',
-    role: 'Software Developer Intern',
-    fromDate: new Date('2022-04-04'),
-    toDate: new Date('2022-07-04'),
+    company: "Revspire Technologies",
+    role: "Senior Software Engineer",
+    location: "Bengaluru, IN",
+    fromDate: new Date("2024-07-01"),
+    toDate: new Date(),
+    present: true,
     tasks: [
-      'Built an QnA forum application',
-      'Updated interfaces, fixed bugs',
-      'Implemented new features',
-      'Collaborated with backend devs to integrate the frontend with APIs',
+      "Led React.js SaaS revenue enablement platform with real-time huddles, shared cursors, and multi-user collaboration using WebSockets/WebRTC.",
+      "Architected a document management suite with custom e-signatures, Git-style contract review, and WOPI integration for native Office editing in browser.",
+      "Built a dynamic CPQ calculator enabling product configuration, pricing, and quote generation inside the platform.",
+      "Developed Node.js/Express APIs with MySQL powering analytics that track document engagement, user interactions, and activity timelines.",
     ],
   },
   {
     id: 2,
-    company: 'IIT Delhi',
-    role: 'Full-stack Developer',
-    fromDate: new Date('2022-08-24'),
-    toDate: new Date('2022-10-24'),
+    company: "Revspire Technologies",
+    role: "Software Engineering Intern",
+    location: "Bengaluru, IN",
+    fromDate: new Date("2024-01-01"),
+    toDate: new Date("2024-06-30"),
     tasks: [
-      'Worked on an annotation tool',
-      'Implemented features in both frontend and backend',
-      'Fixed bugs in the frontend application',
-    ],
-  },
-  {
-    id: 3,
-    company: 'CollegeToppr',
-    role: 'Software Developer Intern',
-    fromDate: new Date('2022-11-07'),
-    toDate: new Date('2023-05-07'),
-    tasks: [
-      'Built more than 50+ client projects from landing pages to full-stack web applications',
-      'Worked on both the frontend and backend technologies',
+      "Developed an interactive user dashboard and comprehensive org settings to streamline onboarding and administration.",
+      "Engineered license and permissions workflows to secure access control and role differentiation across the platform.",
+      "Collaborated with product and backend teams to ship features quickly in a startup environment.",
     ],
   },
 ];
 
 const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const Experience = () => {
@@ -65,6 +57,29 @@ const Experience = () => {
     );
   };
 
+  const formatDate = (date) =>
+    `${months[date.getMonth()]} ${date.getFullYear()}`;
+
+  const formatDuration = (totalMonths) => {
+    const years = Math.floor(totalMonths / 12);
+    const monthsLeft = totalMonths % 12;
+    const parts = [];
+    if (years) parts.push(`${years} ${years === 1 ? "Year" : "Years"}`);
+    if (monthsLeft)
+      parts.push(`${monthsLeft} ${monthsLeft === 1 ? "Month" : "Months"}`);
+    if (!parts.length) parts.push("0 Months");
+    return parts.join(" ");
+  };
+
+  const totalMonths = (() => {
+    const earliestStart = data.reduce(
+      (minDate, ex) =>
+        ex.fromDate.getTime() < minDate.getTime() ? ex.fromDate : minDate,
+      data[0].fromDate,
+    );
+    return monthDiff(earliestStart, new Date());
+  })();
+
   return (
     <Container>
       <motion.div
@@ -73,38 +88,39 @@ const Experience = () => {
         transition={{ duration: 1 }}
       >
         <SectionTitle>Work Experience</SectionTitle>
+        <TotalExp>{formatDuration(totalMonths)}</TotalExp>
 
         <TimeLine>
           {data
             .sort((a, b) => b.fromDate.getTime() - a.fromDate.getTime())
-            .map((ex) => (
-              <TimeLineItem key={ex.id}>
-                <ExperieceHeader>
-                  <h3>
-                    {ex.role}, {ex.company}
-                  </h3>
+            .map((ex) => {
+              const endDate = ex.present ? new Date() : ex.toDate;
+              const durationMonths = monthDiff(ex.fromDate, endDate);
 
-                  <small>
-                    {months[ex.fromDate.getMonth()] +
-                      ' ' +
-                      ex.fromDate.getFullYear()}{' '}
-                    -{' '}
-                    {months[ex.toDate.getMonth()] +
-                      ' ' +
-                      ex.toDate.getFullYear()}{' '}
-                    ({monthDiff(ex.fromDate, ex.toDate)}{' '}
-                    {monthDiff(ex.fromDate, ex.toDate) > 1 ? 'Months' : 'Month'}
-                    )
-                  </small>
-                </ExperieceHeader>
+              return (
+                <TimeLineItem key={ex.id}>
+                  <ExperieceHeader>
+                    <h3>
+                      {ex.role}, {ex.company}
+                    </h3>
 
-                <TaskList>
-                  {ex.tasks.map((task, i) => (
-                    <li key={i}>{task}</li>
-                  ))}
-                </TaskList>
-              </TimeLineItem>
-            ))}
+                    <small>
+                      {formatDate(ex.fromDate)} -{" "}
+                      {ex.present ? "Present" : formatDate(ex.toDate)} (
+                      {formatDuration(durationMonths)})
+                    </small>
+                  </ExperieceHeader>
+
+                  {ex.location && <Location>{ex.location}</Location>}
+
+                  <TaskList>
+                    {ex.tasks.map((task, i) => (
+                      <li key={i}>{task}</li>
+                    ))}
+                  </TaskList>
+                </TimeLineItem>
+              );
+            })}
         </TimeLine>
       </motion.div>
     </Container>
@@ -124,7 +140,7 @@ const TimeLineItem = styled.li`
   border-left: 1px solid var(--accent-blue);
   position: relative;
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -4px;
     left: -6px;
@@ -164,10 +180,21 @@ const ExperieceHeader = styled.div`
   }
 `;
 
+const Location = styled.p`
+  margin: -0.25em 0 0.75em;
+  opacity: 0.7;
+`;
+
 const TaskList = styled.ul`
   list-style-type: circle;
 
   li {
     color: var(--para-gray-color);
   }
+`;
+
+const TotalExp = styled.p`
+  margin: 0.25em 0 1em;
+  opacity: 0.7;
+  font-weight: 500;
 `;

@@ -114,6 +114,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to='/'
+                end
                 // className={({ isActive, isPending }) => {
                 //   return isActive
                 //     ? 'active logo'

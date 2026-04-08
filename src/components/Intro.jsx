@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { Container, HighlightedLink } from '../styles/globalStyles';
-import me from '../assets/me.jpeg';
-import resume from '../assets/Ashish_resume.pdf';
-import { FiDownload } from 'react-icons/fi';
-import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs';
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { Container, HighlightedLink } from "../styles/globalStyles";
+import me from "../assets/me.jpeg";
+import resume from "../assets/Ashish_resume.pdf";
+import { FiDownload } from "react-icons/fi";
+import { BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";
 
 const Intro = () => {
   return (
@@ -15,27 +15,25 @@ const Intro = () => {
         transition={{ duration: 0.5 }}
       >
         <Wrapper>
-          <MyImg src={me} alt='Ashish Kumar Yadav' loading='lazy' />
+          <MyImg src={me} alt="Ashish Kumar Yadav" loading="lazy" />
           <Description>
             <Heading>Ashish Kumar Yadav</Heading>
             <Title>Fullstack Developer</Title>
-            <Bio>
-              Passionate about Technoloy and a team player.
-            </Bio>
-            <HighlightedLink href={resume} target='_blank'>
+            <Bio>Passionate about Technology and a team player.</Bio>
+            <HighlightedLink href={resume} target="_blank">
               Download Resume <FiDownload />
             </HighlightedLink>
             <IconsWrapper>
-              <Icon href='https://github.com/ashish12501' target='_blank'>
+              <Icon href="https://github.com/ashish12501" target="_blank">
                 <BsGithub />
               </Icon>
               <Icon
-                href='https://linkedin.com/in/ashish-kumar-yadav-242ba8209'
-                target='_blank'
+                href="https://linkedin.com/in/ashish-kumar-yadav-242ba8209"
+                target="_blank"
               >
                 <BsLinkedin />
               </Icon>
-              <Icon href='https://twitter.com/AshishYadav0793' target='_blank'>
+              <Icon href="https://twitter.com/AshishYadav0793" target="_blank">
                 <BsTwitter />
               </Icon>
             </IconsWrapper>
@@ -69,7 +67,7 @@ const Description = styled.div`
 const Heading = styled.h1`
   font-size: 3em;
   line-height: 1.2;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
 
   @media (max-width: 768px) {

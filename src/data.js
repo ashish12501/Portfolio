@@ -88,28 +88,40 @@ const skills = [
     title: "JavaScript",
   },
   {
+    icon: "typescript",
+    title: "TypeScript",
+  },
+  {
     icon: "react",
     title: "React.js",
+  },
+  {
+    icon: "redux",
+    title: "Redux Toolkit",
+  },
+  {
+    icon: "nextjs",
+    title: "Next.js",
+  },
+  {
+    icon: "tailwind",
+    title: "Tailwind CSS",
+  },
+  {
+    icon: "nodejs",
+    title: "Node.js",
+  },
+  {
+    icon: "express",
+    title: "Express.js",
   },
   {
     icon: "firebase",
     title: "Firebase",
   },
   {
-    icon: "sass",
-    title: "Sass",
-  },
-  {
-    icon: "tailwind",
-    title: "Tailwind",
-  },
-  {
-    icon: "express",
-    title: "Express",
-  },
-  {
     icon: "mysql",
-    title: "Mysql",
+    title: "MySQL",
   },
   {
     icon: "git",
