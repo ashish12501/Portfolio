@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Container, HighlightedLink } from "../styles/globalStyles";
-import me from "../assets/me.jpeg";
+import me from "../assets/me.png";
 import resume from "../assets/Ashish_resume.pdf";
 import { FiDownload } from "react-icons/fi";
 import { BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";

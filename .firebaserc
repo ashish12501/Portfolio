@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "ashish-webdev"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }
