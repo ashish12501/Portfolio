@@ -2,84 +2,21 @@ import styled from "styled-components";
 import { Container, SectionTitle } from "../styles/globalStyles";
 import { motion } from "framer-motion";
 
-const data = [
-  {
-    id: 1,
-    company: "Revspire Technologies",
-    role: "Senior Software Engineer",
-    location: "Bengaluru, IN",
-    fromDate: new Date("2024-07-01"),
-    toDate: new Date(),
-    present: true,
-    tasks: [
-      "Led React.js SaaS revenue enablement platform with real-time huddles, shared cursors, and multi-user collaboration using WebSockets/WebRTC.",
-      "Architected a document management suite with custom e-signatures, Git-style contract review, and WOPI integration for native Office editing in browser.",
-      "Built a dynamic CPQ calculator enabling product configuration, pricing, and quote generation inside the platform.",
-      "Developed Node.js/Express APIs with MySQL powering analytics that track document engagement, user interactions, and activity timelines.",
-    ],
-  },
-  {
-    id: 2,
-    company: "Revspire Technologies",
-    role: "Software Engineering Intern",
-    location: "Bengaluru, IN",
-    fromDate: new Date("2024-01-01"),
-    toDate: new Date("2024-06-30"),
-    tasks: [
-      "Developed an interactive user dashboard and comprehensive org settings to streamline onboarding and administration.",
-      "Engineered license and permissions workflows to secure access control and role differentiation across the platform.",
-      "Collaborated with product and backend teams to ship features quickly in a startup environment.",
-    ],
-  },
+const promotions = [
+  "Joined as Software Engineering Intern (Jan 2024 – June 2024)",
+  "Promoted to Software Engineer (July 2024 – April 2025)",
+  "Promoted to Software Engineer II (May 2025 – Currently)",
 ];
 
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+const contributions = [
+  "Architected an end-to-end Document Management System featuring a custom E-Signature tool, a Git-style Contract Review System for version tracking, and WOPI protocol integration for native Microsoft Office editing.",
+  "Developed a dynamic CPQ (Configure, Price, Quote) Calculator, allowing enterprise sales teams to dynamically configure products and generate automated quotes directly within the platform.",
+  "Engineered scalable React.js applications for a SaaS Revenue Enablement Platform, implementing real-time features like live video/audio huddles, shared cursors, and multi-user interactions using WebSockets and WebRTC (Mediasoup).",
+  "Built robust REST APIs using Node.js, Express, and MySQL to manage core deal data and power an analytics engine that tracks document engagement, user interactions, and activity timelines.",
+  "Designed and implemented license management and role-based access control (RBAC) workflows to ensure secure multi-tenant data isolation and administrative efficiency.",
 ];
 
 const Experience = () => {
-  const monthDiff = (dateFrom, dateTo) => {
-    return (
-      dateTo.getMonth() -
-      dateFrom.getMonth() +
-      12 * (dateTo.getFullYear() - dateFrom.getFullYear())
-    );
-  };
-
-  const formatDate = (date) =>
-    `${months[date.getMonth()]} ${date.getFullYear()}`;
-
-  const formatDuration = (totalMonths) => {
-    const years = Math.floor(totalMonths / 12);
-    const monthsLeft = totalMonths % 12;
-    const parts = [];
-    if (years) parts.push(`${years} ${years === 1 ? "Year" : "Years"}`);
-    if (monthsLeft)
-      parts.push(`${monthsLeft} ${monthsLeft === 1 ? "Month" : "Months"}`);
-    if (!parts.length) parts.push("0 Months");
-    return parts.join(" ");
-  };
-
-  const totalMonths = (() => {
-    const earliestStart = data.reduce(
-      (minDate, ex) =>
-        ex.fromDate.getTime() < minDate.getTime() ? ex.fromDate : minDate,
-      data[0].fromDate,
-    );
-    return monthDiff(earliestStart, new Date());
-  })();
-
   return (
     <Container>
       <motion.div
@@ -87,41 +24,35 @@ const Experience = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <SectionTitle>Work Experience</SectionTitle>
-        <TotalExp>{formatDuration(totalMonths)}</TotalExp>
+        <SectionTitle>Experience</SectionTitle>
 
-        <TimeLine>
-          {data
-            .sort((a, b) => b.fromDate.getTime() - a.fromDate.getTime())
-            .map((ex) => {
-              const endDate = ex.present ? new Date() : ex.toDate;
-              const durationMonths = monthDiff(ex.fromDate, endDate);
+        <Card>
+          <Header>
+            <div>
+              <Company>Revspire Technologies</Company>
+              <Role>Software Engineer II</Role>
+            </div>
 
-              return (
-                <TimeLineItem key={ex.id}>
-                  <ExperieceHeader>
-                    <h3>
-                      {ex.role}, {ex.company}
-                    </h3>
+            <Meta>
+              <Dates>Jan 2024 – Currently</Dates>
+              <Location>Bengaluru</Location>
+            </Meta>
+          </Header>
 
-                    <small>
-                      {formatDate(ex.fromDate)} -{" "}
-                      {ex.present ? "Present" : formatDate(ex.toDate)} (
-                      {formatDuration(durationMonths)})
-                    </small>
-                  </ExperieceHeader>
+          <Subheading>Promotions</Subheading>
+          <List>
+            {promotions.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </List>
 
-                  {ex.location && <Location>{ex.location}</Location>}
-
-                  <TaskList>
-                    {ex.tasks.map((task, i) => (
-                      <li key={i}>{task}</li>
-                    ))}
-                  </TaskList>
-                </TimeLineItem>
-              );
-            })}
-        </TimeLine>
+          <Subheading>Core Contributions</Subheading>
+          <List>
+            {contributions.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </List>
+        </Card>
       </motion.div>
     </Container>
   );
@@ -129,72 +60,61 @@ const Experience = () => {
 
 export default Experience;
 
-const TimeLine = styled.ul`
-  list-style-type: none;
-  margin: 1em 0;
-  padding: 1em;
+const Card = styled.div`
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
 `;
 
-const TimeLineItem = styled.li`
-  padding: 0 0 2em 2em;
-  border-left: 1px solid var(--accent-blue);
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    top: -4px;
-    left: -6px;
-    padding: 4px;
-    border-radius: 50%;
-    background-color: var(--accent-blue);
-    border: 2px solid var(--accent-blue);
-  }
-
-  p {
-    opacity: 0.7;
-  }
-
-  ul {
-    padding: 0 1em;
-  }
-`;
-
-const ExperieceHeader = styled.div`
+const Header = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
 
-  position: relative;
-  top: -10px;
+const Company = styled.h3`
+  margin: 0;
+  font-weight: 600;
+`;
 
-  h3 {
-    font-weight: 400;
-  }
+const Role = styled.p`
+  margin: 0.15rem 0 0;
+  opacity: 0.8;
+  font-weight: 500;
+`;
 
-  small {
-    opacity: 0.8;
-  }
+const Meta = styled.div`
+  text-align: right;
 
   @media (max-width: 768px) {
-    display: block;
+    text-align: left;
   }
+`;
+
+const Dates = styled.p`
+  margin: 0;
+  font-weight: 500;
 `;
 
 const Location = styled.p`
-  margin: -0.25em 0 0.75em;
-  opacity: 0.7;
+  margin: 0.15rem 0 0;
+  opacity: 0.8;
 `;
 
-const TaskList = styled.ul`
-  list-style-type: circle;
+const Subheading = styled.h4`
+  margin: 1.25rem 0 0.5rem;
+  font-weight: 600;
+`;
+
+const List = styled.ul`
+  margin: 0;
+  padding-left: 1.1rem;
 
   li {
     color: var(--para-gray-color);
+    line-height: 1.6;
   }
-`;
-
-const TotalExp = styled.p`
-  margin: 0.25em 0 1em;
-  opacity: 0.7;
-  font-weight: 500;
 `;
