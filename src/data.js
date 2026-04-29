@@ -96,16 +96,24 @@ const skills = [
     title: "React.js",
   },
   {
+    icon: "react",
+    title: "React Native",
+  },
+  {
     icon: "redux",
     title: "Redux Toolkit",
   },
-  {
-    icon: "nextjs",
-    title: "Next.js",
-  },
+  // {
+  //   icon: "nextjs",
+  //   title: "Next.js",
+  // },
   {
     icon: "tailwind",
     title: "Tailwind CSS",
+  },
+  {
+    icon: "nativeWind",
+    title: "NativeWind",
   },
   {
     icon: "nodejs",
